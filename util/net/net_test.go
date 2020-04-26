@@ -7,7 +7,7 @@ import (
 
 func TestListen(t *testing.T) {
 	fn := func(addr string) (net.Listener, error) {
-		return net.Listen("tcp", addr)
+		return net.Listen("std", addr)
 	}
 
 	// try to create a number of listeners

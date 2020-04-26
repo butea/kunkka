@@ -1,0 +1,41 @@
+syntax="proto3";
+
+package transport;
+option go_package = "transport";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.goproto_enum_prefix_all) = false;
+
+
+message Message {
+    Head head = 1;
+    bytes body = 2;
+}
+
+message Head {
+    MsgType msg_type = 1;
+    Flag flag = 2; // 标记位
+
+    map<string, string> meta = 3;
+}
+
+enum MsgType {
+
+    MsgTypeRequest = 0;
+    MsgTypeResponse = 1;
+    MsgTypePush = 2;
+
+}
+
+enum Flag {
+    FlagUnknown = 0;
+    FlagHeartbeat = 0x00000001;
+    FlagNoResponse = 0x00000002; // 无🔙返回值
+    Unknown = 4;
+}
+
+enum ContentType {
+    ContentTypeProtobuf = 0;
+    ContentTypeJson = 1;
+}

@@ -21,7 +21,7 @@ func TestRoundTripper(t *testing.T) {
 		w.Write([]byte(`hello world`))
 	})
 
-	l, err := net.Listen("tcp", "127.0.0.1:0")
+	l, err := net.Listen("std", "127.0.0.1:0")
 	if err != nil {
 		t.Fatal(err)
 	}
